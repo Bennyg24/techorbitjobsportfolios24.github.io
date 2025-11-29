@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Developer Portfolio - Samuel Morrison</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Noto+Sans:wght@700&display=swap" rel-stylesheet>
+    <style>
+        /* --- Android Developer Design: Material, Green/Blue, Modular --- */
+        :root {
+            --ad-primary: #00897B; /* Teal/Material Green */
+            --ad-accent: #4FC3F7; /* Light Blue */
+            --ad-background: #E8F5E9;
+            --ad-dark: #004D40;
+            --ad-text: #212121;
+            --ad-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--ad-text);
+            background: var(--ad-background);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: var(--ad-accent); transition: color 0.3s; }
+        .section { padding: 80px 0; }
+
+        /* --- Header/Profile Area --- */
+        .ad-header {
+            background: var(--ad-dark);
+            color: white;
+            padding: 40px 0;
+            border-bottom: 5px solid var(--ad-primary);
+        }
+
+        .ad-profile-area {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        
+        .ad-left-panel {
+            flex-shrink: 0;
+            width: 200px;
+            text-align: center;
+            padding-right: 30px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ad-profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid var(--ad-accent);
+            object-fit: cover;
+            box-shadow: 0 0 0 8px var(--ad-primary);
+            margin-bottom: 15px;
+        }
+
+        .ad-contact-details {
+            font-size: 0.9em;
+            text-align: left;
+            margin-top: 15px;
+            padding-top: 15px;
+        }
+        .ad-contact-details p { margin: 5px 0; color: var(--ad-accent); }
+
+        .ad-main-content { flex-grow: 1; }
+
+        #dynamicGreeting {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.3em;
+            color: var(--ad-accent);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .ad-header h1 {
+            font-size: 3em;
+            margin: 0 0 10px;
+            font-weight: 900;
+        }
+        .ad-header h2 {
+            font-size: 1.4em;
+            color: var(--ad-primary);
+            margin-bottom: 20px;
+        }
+
+        /* --- Project Grid Styles --- */
+        .ad-projects-section {
+             background: white;
+             padding-top: 0;
+             padding-bottom: 60px;
+        }
+        .ad-project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .ad-project-card {
+            background: var(--ad-card-bg);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px var(--ad-shadow);
+            overflow: hidden;
+            text-align: left;
+        }
+        .ad-project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--ad-primary);
+        }
+        .ad-project-content { padding: 20px; }
+        .ad-project-content h4 { color: var(--ad-dark); margin-top: 0; font-size: 1.4em; }
+        .ad-project-content a { font-weight: 700; color: var(--ad-accent); }
+
+
+        /* --- Skills and Competencies --- */
+        .ad-section-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 2.5em;
+            color: var(--ad-dark);
+            margin-bottom: 50px;
+        }
+        
+        .ad-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .ad-skill-card {
+            background: white;
+            padding: 25px;
+            border-bottom: 5px solid var(--ad-primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .ad-skill-card h4 { color: var(--ad-dark); margin-top: 0; }
+        .ad-skill-card p { font-size: 0.9em; }
+
+        /* --- Call to Action (CTA) --- */
+        .ad-cta-section {
+            background: var(--ad-primary);
+            padding: 70px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+        .ad-cta-btn {
+            display: inline-block;
+            background: var(--ad-accent);
+            color: var(--ad-dark);
+            padding: 18px 50px;
+            border-radius: 5px;
+            font-weight: 900;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px var(--ad-accent);
+            transition: all 0.3s ease;
+        }
+        .ad-cta-btn:hover { background: white; transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            .ad-profile-area { flex-direction: column; text-align: center; }
+            .ad-left-panel { width: 100%; padding-right: 0; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 20px; }
+            .ad-contact-details { text-align: center; }
+            .ad-main-content { padding-top: 20px; }
+            .ad-header h1 { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="ad-header">
+        <div class="container">
+            <div class="ad-profile-area">
+                <div class="ad-left-panel">
+                    <img src="https://techorbitjobs.com/wp-content/uploads/2025/10/testimonial-1.webp" alt="Samuel Morrison Profile" class="ad-profile-img">
+                    <div class="ad-contact-details">
+                        <p><strong>Location:</strong> British Columbia, Canada</p>
+                        <p><strong>Email:</strong> samuel.morrison@example.com</p>
+                        <p><strong>LinkedIn:</strong> [Your LinkedIn URL]</p>
+                        <p><strong>Google Play:</strong> [Your Play Store Link]</p>
+                    </div>
+                </div>
+
+                <div class="ad-main-content">
+                    <div id="dynamicGreeting"></div>
+                    <h1>SAMUEL MORRISON</h1>
+                    <h2>ANDROID DEVELOPER | KOTLIN & JETPACK</h2>
+                    <p>
+                        I am a results-focused Android Developer dedicated to building high-quality, native mobile applications. My expertise lies in modern Android development (Kotlin/Compose), implementing clean architecture (MVVM), and ensuring optimal user experience and performance across diverse devices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="ad-section-title">TECHNICAL SKILLS & CORE COMPETENCIES</h2>
+            <div class="ad-skills-grid">
+                <div class="ad-skill-card">
+                    <h4>Languages & Frameworks</h4>
+                    <p>Kotlin, Java, Jetpack Compose, XML Layouts, Coroutines.</p>
+                </div>
+                <div class="ad-skill-card">
+                    <h4>Architecture & Libraries</h4>
+                    <p>MVVM/MVI, Dagger/Hilt, Retrofit, Room Database, Unit Testing (JUnit).</p>
+                </div>
+                <div class="ad-skill-card">
+                    <h4>Mobile Systems</h4>
+                    <p>API integration, push notifications (Firebase), Google Play services, app performance optimization.</p>
+                </div>
+                <div class="ad-skill-card">
+                    <h4>UI/UX & Design</h4>
+                    <p>Material Design, Accessibility, responsive UI development for tablets and foldables.</p>
+                </div>
+            </div>
+
+            <h2 class="ad-section-title">FEATURED ANDROID PROJECTS</h2>
+            <div class="ad-project-grid">
+                <div class="ad-project-card">
+                    <img src="project1.png" alt="Kotlin App Screenshot with Clean UI">
+                    <div class="ad-project-content">
+                        <h4>Productivity Task Manager (Kotlin & MVVM)</h4>
+                        <p>Built a complex task management app using Kotlin, implementing MVVM architecture with LiveData and Coroutines for background tasks.</p>
+                        <a href="[Link to Google Play Store]">View App on Play Store</a>
+                    </div>
+                </div>
+                <div class="ad-project-card">
+                    <img src="project2.png" alt="Jetpack Compose App Screenshot">
+                    <div class="ad-project-content">
+                        <h4>Compose-Based E-commerce UI</h4>
+                        <p>Developed a modular, responsive e-commerce storefront UI using Jetpack Compose, showcasing modern Android declarative UI.</p>
+                        <a href="[Link to GitHub Repo]">View GitHub Repo</a>
+                    </div>
+                </div>
+                <div class="ad-project-card">
+                    <img src="project3.png" alt="Android App Performance Profiler Screenshot">
+                    <div class="ad-project-content">
+                        <h4>Optimized Travel Booking App</h4>
+                        <p>Focused on performance tuning, reducing network calls and optimizing image loading to improve load times by 40% (using Retrofit and Glide).</p>
+                        <a href="[Link to Performance Report]">View Performance Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ad-cta-section">
+        <div class="container">
+            <h3>READY TO LAUNCH A TOP-RATED ANDROID APP?</h3>
+            <a href="[Link to Contact/Project Inquiry]" class="ad-cta-btn">BUILD WITH SAMUEL</a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const greetingElement = document.getElementById('dynamicGreeting');
+            const date = new Date();
+            const hour = date.getHours();
+            let greeting;
+            if (hour < 12) { greeting = 'Good morning!'; } 
+            else if (hour < 18) { greeting = 'Good afternoon!'; } 
+            else { greeting = 'Good evening!'; }
+            if (greetingElement) { greetingElement.textContent = greeting + ' Welcome to my portfolio,'; }
+        });
+    </script>
+</body>
+</html>
